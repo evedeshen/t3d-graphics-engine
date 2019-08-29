@@ -222,6 +222,9 @@
     <ClCompile Include="ParticleGravity.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="cylinder.cpp">
+      <Filter>Source Files\Component\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -385,6 +388,9 @@
     </ClInclude>
     <ClInclude Include="ParticleGravity.h">
       <Filter>Header Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="cylinder.h">
+      <Filter>Header Files\Component\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
