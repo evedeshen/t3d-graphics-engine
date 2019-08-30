@@ -7,7 +7,7 @@ namespace T3D {
 		:public Mesh
 	{
 	public:
-		cylinder(int radius,int height,int density);
+		cylinder(float radius,float height,int density);
 		virtual ~cylinder();
 	};
 }
