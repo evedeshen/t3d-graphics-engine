@@ -4,6 +4,7 @@
 #include "Cube.h"
 #include "KeyboardController.h"
 #include "cylinder.h"
+#include "HoleInWall.h"
 using namespace T3D;
 
 tutorial4::tutorial4()
@@ -39,9 +40,12 @@ bool tutorial4::init() {
 	Material *green = renderer->createMaterial(Renderer::PR_OPAQUE);
 	green->setDiffuse(0, 1, 0, 1);
 
-
+	Vector3 test;
+	test.x = 5;
+	test.y = 5;
+	test.z = 2;
 	GameObject *cube = new GameObject(this);
-	cube->setMesh(new cylinder(2,1,20));
+	cube->setMesh(new HoleInWall(test,1,1,1,40));
 	cube->setMaterial(green);
 	cube->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	cube->getTransform()->setParent(root);
