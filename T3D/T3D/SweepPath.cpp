@@ -32,4 +32,14 @@ namespace T3D{
 
 	}
 
+	void SweepPath::makeSinPath(float r, int d,float a) {
+		path.clear();
+		for (int i = 0; i<d; i++) {
+			Transform t;
+			float angle = Math::TWO_PI*i / d;
+			t.setLocalPosition(Vector3(r*cosf(angle),r*sinf(angle) ,i*r/d ));
+			//t.setLocalRotation(Quaternion(Vector3(0,0, -angle)));
+			path.push_back(t);
+		}
+	}
 }

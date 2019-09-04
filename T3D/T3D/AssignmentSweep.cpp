@@ -40,20 +40,30 @@ bool AssignmentSweep::init() {
 	Material *green = renderer->createMaterial(Renderer::PR_OPAQUE);
 	green->setDiffuse(0, 1, 0, 1);
 
+	vector<Transform> path;
 	//start to build sweep 
 	SweepPath sp;
-	sp.makeCirclePath(5, 8);
-
+	Transform t;
+	t.setLocalPosition(Vector3(sin(0.1), cos(0.1), 0));
+	path.push_back(t);
 	// Make a profile
 	vector<Vector3> points;
-	points.push_back(Vector3(1, 0, 0));
+	points.push_back(Vector3(1, 0, 0.));
+	points.push_back(Vector3(0.92, 0.38, 0));
 	points.push_back(Vector3(0.7, 0.7, 0));
+	points.push_back(Vector3(0.38, 0.92, 0));
 	points.push_back(Vector3(0, 1, 0));
+	points.push_back(Vector3(-0.38, 0.92, 0));
 	points.push_back(Vector3(-0.7, 0.7, 0));
+	points.push_back(Vector3(-0.92, 0.38, 0));
 	points.push_back(Vector3(-1, 0, 0));
+	points.push_back(Vector3(-0.92, -0.38, 0));
 	points.push_back(Vector3(-0.7, -0.7, 0));
+	points.push_back(Vector3(-0.38, 0.92, 0));
 	points.push_back(Vector3(0, -1, 0));
+	points.push_back(Vector3(0.38, -0.92, 0));
 	points.push_back(Vector3(0.7, -0.7, 0));
+	points.push_back(Vector3(0.92, -0.38, 0));
 
 	GameObject *torus = new GameObject(this);
 	torus->setMesh(new Sweep(points, sp, true));
