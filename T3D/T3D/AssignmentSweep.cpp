@@ -17,6 +17,7 @@ AssignmentSweep::~AssignmentSweep()
 }
 
 bool AssignmentSweep::init() {
+	WinGLApplication::init();
 	// more code to come...
 	GameObject *lightObj = new GameObject(this);
 	Light *light = new Light(Light::DIRECTIONAL);

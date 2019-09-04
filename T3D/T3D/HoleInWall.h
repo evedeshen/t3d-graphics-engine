@@ -12,6 +12,7 @@ namespace T3D {
 			float radius, // the radius of the hole
 			int density // the density of the hole);
 		);
+		int Become8(int number,int d);
 		virtual ~HoleInWall();
 	};
 }

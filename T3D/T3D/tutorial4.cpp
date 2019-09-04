@@ -41,11 +41,11 @@ bool tutorial4::init() {
 	green->setDiffuse(0, 1, 0, 1);
 
 	Vector3 test;
-	test.x = 5;
-	test.y = 5;
-	test.z = 2;
+	test.x = 1;
+	test.y = 1;
+	test.z = 0.1;
 	GameObject *cube = new GameObject(this);
-	cube->setMesh(new cylinder(1,1,20));
+	cube->setMesh(new HoleInWall(test,0.1,0.1,0.2,20));
 	cube->setMaterial(green);
 	cube->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	cube->getTransform()->setParent(root);
