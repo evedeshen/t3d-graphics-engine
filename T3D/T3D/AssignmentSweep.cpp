@@ -1,23 +1,22 @@
-#include "tutorial4.h"
-#include "WinGLApplication.h"
+#include "AssignmentSweep.h"
 #include "Camera.h"
 #include "Cube.h"
 #include "KeyboardController.h"
-#include "cylinder.h"
-#include "HoleInWall.h"
+#include "Sweep.h"
+#include "SweepPath.h"
+
 using namespace T3D;
 
-tutorial4::tutorial4()
+AssignmentSweep::AssignmentSweep()
 {
 }
 
 
-tutorial4::~tutorial4()
+AssignmentSweep::~AssignmentSweep()
 {
 }
 
-bool tutorial4::init() {
-	WinGLApplication::init();
+bool AssignmentSweep::init() {
 	// more code to come...
 	GameObject *lightObj = new GameObject(this);
 	Light *light = new Light(Light::DIRECTIONAL);
@@ -40,16 +39,26 @@ bool tutorial4::init() {
 	Material *green = renderer->createMaterial(Renderer::PR_OPAQUE);
 	green->setDiffuse(0, 1, 0, 1);
 
-	Vector3 test;
-	test.x = 5;
-	test.y = 5;
-	test.z = 2;
-	GameObject *cube = new GameObject(this);
-	cube->setMesh(new cylinder(1,1,20));
-	cube->setMaterial(green);
-	cube->getTransform()->setLocalPosition(Vector3(0, 0, 0));
-	cube->getTransform()->setParent(root);
-	cube->getTransform()->name = "Cube";
+	//start to build sweep 
+	SweepPath sp;
+	sp.makeCirclePath(5, 8);
 
+	// Make a profile
+	vector<Vector3> points;
+	points.push_back(Vector3(1, 0, 0));
+	points.push_back(Vector3(0.7, 0.7, 0));
+	points.push_back(Vector3(0, 1, 0));
+	points.push_back(Vector3(-0.7, 0.7, 0));
+	points.push_back(Vector3(-1, 0, 0));
+	points.push_back(Vector3(-0.7, -0.7, 0));
+	points.push_back(Vector3(0, -1, 0));
+	points.push_back(Vector3(0.7, -0.7, 0));
+
+	GameObject *torus = new GameObject(this);
+	torus->setMesh(new Sweep(points, sp, true));
+	torus->setMaterial(green);
+	torus->getTransform()->setLocalPosition(Vector3(0, 0, 0));
+	torus->getTransform()->setParent(root);
+	torus->getTransform()->name = "Torus";
 	return true;
 }

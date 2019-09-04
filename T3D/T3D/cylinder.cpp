@@ -38,8 +38,8 @@ namespace T3D {
 				density + (i + 1) % density, // next bottom vertex (wrapping) 
 				density + i        // current bottom vertex
 			);
-			setFace(i, i,(i + 1) % density, 2*density);
-			setFace(density+i, density+i, density+(i + 1) % density, 2*density+1);
+			setFace(i, (i + 1) % density,i, 2*density+1);
+			setFace(density+i, density+i,density+(i + 1) % density,  2*density);
 		}
 		checkArrays();
 

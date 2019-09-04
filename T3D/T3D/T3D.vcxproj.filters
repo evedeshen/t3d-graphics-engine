@@ -231,6 +231,9 @@
     <ClCompile Include="HoleInWall.cpp">
       <Filter>Source Files\Component\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="AssignmentSweep.cpp">
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -403,6 +406,9 @@
     </ClInclude>
     <ClInclude Include="HoleInWall.h">
       <Filter>Header Files\Component\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignmentSweep.h">
+      <Filter>Header Files\Application</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
