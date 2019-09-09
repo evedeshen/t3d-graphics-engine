@@ -5,47 +5,45 @@
 using namespace T3D;
 Chip::Chip(Vector3 wallSize, float chipX, float chipY, float r, float depth, int density)
 {
-	initArrays(2 * density + 9,	// num vertices
+	float sn= density / 4.0;//number of slope 
+	initArrays((sn+1)*density + 9 ,	// num vertices
 		2 * density + 4,		// num tris
-		density + 5);		// num quads
-	int rr = 3 / 4 * r;
+		(sn)*density + 5);		// num quads
 	float angle = 2 * Math::PI / density;
 	float theta;
-	for (int i = 0; i < density; i++)
+	
+	for (int j = 0; j < sn + 1; j++)
 	{
-		theta = i * angle;
-		float y = r * cos(theta) + chipY;
-		float x = r * sin(theta) + chipX;
-		// top vertex
-		setVertex(i, x, y, wallSize.z);
-
-		float yy = rr * cos(theta) + chipY;
-		float xx = rr * sin(theta) + chipX;
-		//inside vertex 
-		setVertex(density + i, xx, yy, wallSize.z-depth);
+		for (int i = 0; i < density; i++)
+		{
+        theta = i * angle;
+		float y = (1-0.25*j/sn)*r * cos(theta) + chipY;
+		float x = (1 - 0.25*j / sn)*r * sin(theta) + chipX;
+		float z = wallSize.z - j / sn * depth;
+		setVertex(i+density*j, x, y, z);
+		}				
 	}
-	setVertex(2 * density, wallSize.x, wallSize.y, wallSize.z);
-	setVertex(2 * density + 1, wallSize.x, -wallSize.y, wallSize.z);
-	setVertex(2 * density + 2, -wallSize.x, wallSize.y, wallSize.z);
-	setVertex(2 * density + 3, -wallSize.x, -wallSize.y, wallSize.z);
-	setVertex(2 * density + 4, wallSize.x, wallSize.y, -wallSize.z);
-	setVertex(2 * density + 5, wallSize.x, -wallSize.y, -wallSize.z);
-	setVertex(2 * density + 6, -wallSize.x, wallSize.y, -wallSize.z);
-	setVertex(2 * density + 7, -wallSize.x, -wallSize.y, -wallSize.z);
-	setVertex(2 * density + 8, chipX, chipY, wallSize.z - depth);
+	setVertex((sn+1) * density, wallSize.x, wallSize.y, wallSize.z);
+	setVertex((sn + 1) * density + 1, wallSize.x, -wallSize.y, wallSize.z);
+	setVertex((sn + 1) * density + 2, -wallSize.x, wallSize.y, wallSize.z);
+	setVertex((sn + 1) * density + 3, -wallSize.x, -wallSize.y, wallSize.z);
+	setVertex((sn + 1)* density + 4, wallSize.x, wallSize.y, -wallSize.z);
+	setVertex((sn + 1) * density + 5, wallSize.x, -wallSize.y, -wallSize.z);
+	setVertex((sn + 1) * density + 6, -wallSize.x, wallSize.y, -wallSize.z);
+	setVertex((sn + 1) * density + 7, -wallSize.x, -wallSize.y, -wallSize.z);
+	setVertex((sn + 1) * density + 8, chipX, chipY, wallSize.z - depth);
 	
 	for (int i = 0; i < density; i++)
 	{
 		setFace(i,   // face id
-			density + i,
-			Become8(density + (i + 1), density),
-
+			(sn + 1)*density + i,
+			Become8((sn + 1)*density + (i + 1), density),
 			(i + 1) % density,
 			i
-
 		);
 	}
 	
+	//don't need to change 
 	for (int i = 0; i < density / 4; i++)
 	{
 		setFace(i, i, i + 1, 2 * density); // top phase 1 1
@@ -63,7 +61,7 @@ Chip::Chip(Vector3 wallSize, float chipX, float chipY, float r, float depth, int
 	
 	for (int i = 0; i < density; i++)
 	{
-		setFace(density + i, Become8(density+i+1,density),density+i,  2 * density + 8);
+		setFace(density + i, Become8((sn + 1)*density+i+1,density), (sn + 1)*density+i, (sn + 1) * density + 8);
 	}
 	
 	
@@ -94,10 +92,11 @@ Chip::~Chip()
 {
 }
 
+//some mathmatical function 
 int Chip::Become8(int n, int d) {
-	if (n == 2 * d)
+	if (n %d == 0)
 	{
-		return d;
+		return n-d;
 	}
 	else
 	{
