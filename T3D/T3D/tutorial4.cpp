@@ -46,7 +46,7 @@ bool tutorial4::init() {
 	test.y = 1;
 	test.z = 0.1;
 	GameObject *cube = new GameObject(this);
-	cube->setMesh(new Chip(test, 0.2, 0.2, 0.2, 0.1, 20));
+	cube->setMesh(new Chip(test, 0.2, 0.2, 0.3, 0.1, 40));
 	//cube->setMesh(new HoleInWall(test,0.1,0.1,0.2,20));
 	cube->setMaterial(green);
 	cube->getTransform()->setLocalPosition(Vector3(0, 0, 0));
