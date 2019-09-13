@@ -1,4 +1,5 @@
 #include "SweepPath.h"
+#include "Sweep.h"
 #include <math.h>
 
 namespace T3D{
@@ -32,14 +33,16 @@ namespace T3D{
 
 	}
 
-	void SweepPath::makeSinPath(float r, int d,float a) {
-		path.clear();
+	void SweepPath::makeSinPath(SweepPath p, int d) {
+		p.path.clear();
 		for (int i = 0; i<d; i++) {
 			Transform t;
 			float angle = Math::TWO_PI*i / d;
-			t.setLocalPosition(Vector3(r*cosf(angle),r*sinf(angle) ,i*r/d ));
-			//t.setLocalRotation(Quaternion(Vector3(0,0, -angle)));
-			path.push_back(t);
+			float s = abs(sin(angle));
+			t.setLocalPosition(Vector3(i,0,0 ));
+			t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2,0)));
+			t.setLocalScale(Vector3(s, s, s));
+			p.path.push_back(t);
 		}
 	}
 }

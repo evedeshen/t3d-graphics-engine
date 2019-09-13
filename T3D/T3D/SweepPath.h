@@ -18,7 +18,8 @@ namespace T3D
 		int size(){ return path.size(); }
 
 		void makeCirclePath(float radius, int density);
-		void makeSinPath(float r, int d, float a);
+		void makeSinPath(SweepPath path , int d);
+	
 		
 
 	protected:

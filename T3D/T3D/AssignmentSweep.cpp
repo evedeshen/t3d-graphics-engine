@@ -44,8 +44,7 @@ bool AssignmentSweep::init() {
 	//start to build sweep 
 	SweepPath sp;
 	Transform t;
-	t.setLocalPosition(Vector3(sin(0.1), cos(0.1), 0));
-	path.push_back(t);
+	
 	
 	
 	// Make a profile
@@ -60,34 +59,58 @@ bool AssignmentSweep::init() {
 	points.push_back(Vector3(-0.92, 0.38, 0));
 	points.push_back(Vector3(-1, 0, 0));
 	points.push_back(Vector3(-0.92, -0.38, 0));
-	//points.push_back(Vector3(-0.7, -0.7, 0));
-	//points.push_back(Vector3(-0.38, 0.92, 0));
-	//points.push_back(Vector3(0, -1, 0));
-	//points.push_back(Vector3(0.38, -0.92, 0));
-	//points.push_back(Vector3(0.7, -0.7, 0));
-	//points.push_back(Vector3(0.92, -0.38, 0));
+	points.push_back(Vector3(-0.7, -0.7, 0));
+	points.push_back(Vector3(-0.38, -0.92, 0));
+	points.push_back(Vector3(0, -1, 0));
+	points.push_back(Vector3(0.38, -0.92, 0));
+	points.push_back(Vector3(0.7, -0.7, 0));
+	points.push_back(Vector3(0.92, -0.38, 0));
 
-	t.setLocalPosition(Vector3(0, 0, 0));
+	
+    t.setLocalPosition(Vector3(-1, 0, 0));
 	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
-	t.setLocalScale(Vector3(0, 0, 1.0)); 
+	t.setLocalScale(Vector3(0.5, 0.5, 0.5));
+	sp.addTransform(t);
+	t.setLocalPosition(Vector3(1, 0, 0));
+	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
+	t.setLocalScale(Vector3(1, 1, 1));
+	
+	sp.addTransform(t);
+	t.setLocalPosition(Vector3(3, 0, 0));
+	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
+	t.setLocalScale(Vector3(0.7,0.7,0.7));
 	sp.addTransform(t);
 
-	t.setLocalScale(Vector3(0.9, 1, 1.0));
+	t.setLocalPosition(Vector3(3, -3, 0));
+	t.setLocalRotation(Quaternion(Vector3(0  ,Math::PI / 2,0)));
+	t.setLocalScale(Vector3(0.7, 0.7, 0.7));
 	sp.addTransform(t);
 
-	t.setLocalPosition(Vector3(-0.0075, 0, 0));
-	t.setLocalScale(Vector3(1, 1, 1.0));
+	t.setLocalPosition(Vector3(0, -3, 0));
+	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
+	t.setLocalScale(Vector3(1, 1, 1));
 	sp.addTransform(t);
 
-	t.setLocalPosition(Vector3(0.01, 0, 0));
+
+	t.setLocalPosition(Vector3(-3, -3, 0));
+	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
+	t.setLocalScale(Vector3(0.7, 0.7, 0.7));
 	sp.addTransform(t);
 
-	t.setLocalPosition(Vector3(0.03, 0, 0));
-	t.setLocalScale(Vector3(0.9, 1, 1.0));
+	t.setLocalPosition(Vector3(-3, 0, 0));
+	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
+	t.setLocalScale(Vector3(1, 1, 1));
 	sp.addTransform(t);
+	
+	
+	
+	//t.setLocalPosition(Vector3(0, -2, 0));
+	//t.setLocalScale(Vector3(1, 1, 1));
+	//t.setLocalRotation(Quaternion(Vector3(0, 0, Math::PI / 2)));
+    //sp.addTransform(t);
 
-	t.setLocalScale(Vector3(0, 0, 1.0));
-	sp.addTransform(t);
+	//t.setLocalScale(Vector3(0, 0, 1.0));
+	//sp.addTransform(t);
 
 	GameObject *torus = new GameObject(this);
 	torus->setMesh(new Sweep(points, sp, true));
