@@ -24,12 +24,18 @@
 using namespace T3D;
 
 int main(int argc, char* argv[]){
-    //T3DApplication *theApp = new tutorial4();
+
+   
 	//T3DApplication *theApp = new Tutorial1();
 	//T3DApplication *theApp = new GLTestApplication();
 	//T3DApplication *theApp = new ShaderTest();
+
+	//part 1 of assignment  
     //T3DApplication *theApp = new AssignmentSweep();
-	T3DApplication *theApp = new dog();
+    //this is my part 2 of assignment
+	T3DApplication *theApp = new dog(); 
+	//part 3 and 4, change the line 50 and 51 in tutorial 4, use line 50 is chip in wall and use line 51 is hole in wall 
+	//T3DApplication *theApp = new tutorial4();
 	theApp->run();
 	delete theApp;
 
