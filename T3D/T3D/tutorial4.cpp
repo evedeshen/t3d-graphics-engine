@@ -6,6 +6,7 @@
 #include "cylinder.h"
 #include "HoleInWall.h"
 #include "Chip.h"
+#include "ball.h"
 using namespace T3D;
 
 tutorial4::tutorial4()
@@ -48,6 +49,7 @@ bool tutorial4::init() {
 	GameObject *cube = new GameObject(this);
 	cube->setMesh(new Chip(test, 0.2, 0.2, 0.3, 0.1, 40));
 	//cube->setMesh(new HoleInWall(test,0.1,0.1,0.2,20));
+	//cube->setMesh(new ball(1.0, 16));
 	cube->setMaterial(green);
 	cube->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	cube->getTransform()->setParent(root);

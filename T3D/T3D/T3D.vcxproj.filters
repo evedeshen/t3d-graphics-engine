@@ -237,6 +237,12 @@
     <ClCompile Include="Chip.cpp">
       <Filter>Source Files\Component\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="dog.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -415,6 +421,12 @@
     </ClInclude>
     <ClInclude Include="Chip.h">
       <Filter>Header Files\Component\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="dog.h">
+      <Filter>Header Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="ball.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
