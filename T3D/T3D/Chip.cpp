@@ -11,17 +11,23 @@ Chip::Chip(Vector3 wallSize, float chipX, float chipY, float r, float depth, int
 		(sn)*density + 5);		// num quads
 	float angle = 2 * Math::PI / density;
 	float theta;
+	float phi;//use for sphere coordination , the curve is hard in XYZ coordination
 	
 	for (int j = 0; j < sn + 1; j++)
 	{
+		theta = Math::PI /2-(0.5*Math::PI - acos(depth/r))*(j/sn);
 		for (int i = 0; i < density; i++)
 		{
-        theta = i * angle;
+        phi = i * angle;
+		
+		//theta = 1.0 / 6 * Math::PI*(j / (sn));
 		//float y = curveIndexGenerator(j,sn) *r * cos(theta) + chipY; //its not like a curve but if change 0.4 into some specific math funciton it will be allright 
 		//float x = curveIndexGenerator(j, sn)*r * sin(theta) + chipX;
-        float x = (1 - 0.3*j / sn)*r * sin(theta) + chipX;//its most likely use some power series method like 1/2 ^n or something, if i have time i will fill this part 
-		float y = (1 - 0.3*j / sn)*r * cos(theta) + chipY;
-		float z = wallSize.z - j / sn * depth;
+        float x = (sin(theta) * sin(phi))*r + chipX;//its most likely use some power series method like 1/2 ^n or something, if i have time i will fill this part 
+		float y = (sin(theta) * cos(phi))*r + chipY;
+		float z = wallSize.z-(cos(theta))*r;
+
+
 		setVertex(i+density*j, x, y, z);
 		}				
 	}
@@ -33,7 +39,7 @@ Chip::Chip(Vector3 wallSize, float chipX, float chipY, float r, float depth, int
 	setVertex((sn + 1) * density + 5, wallSize.x, -wallSize.y, -wallSize.z);
 	setVertex((sn + 1) * density + 6, -wallSize.x, wallSize.y, -wallSize.z);
 	setVertex((sn + 1) * density + 7, -wallSize.x, -wallSize.y, -wallSize.z);
-	setVertex((sn + 1) * density + 8, chipX, chipY, wallSize.z - depth);
+	setVertex((sn + 1) * density + 8, chipX, chipY, wallSize.z-depth);
 	
 
 	// this part finished first and works well 
@@ -41,11 +47,11 @@ Chip::Chip(Vector3 wallSize, float chipX, float chipY, float r, float depth, int
 	{
 		for (int i = 0; i < density; i++)
 		{
-			setFace(i+(j-1)*density,   // face id
+			setFace(i + (j - 1)*density,   // face id
 				(j)*density + i,
 				Become8((j)*density + (i + 1), density),
-				(i + 1) % density,
-				i
+				Become8((j-1)*density + (i + 1), density),
+				i + (j-1) * density
 			);
 		}
 	}
@@ -89,7 +95,7 @@ Chip::Chip(Vector3 wallSize, float chipX, float chipY, float r, float depth, int
 	setFace(sn*density + 4, (sn + 1) * density + 4, (sn + 1) * density + 5, (sn + 1) * density + 7, (sn + 1) * density + 6);
 	
 	checkArrays();
-
+	
 	// Calculate normals
 	calcNormals();
 
@@ -102,6 +108,7 @@ Chip::~Chip()
 }
 
 //some mathmatical function 
+//this function is used for in loop, a substitution of %
 int Chip::Become8(int n, int d) {
 	if (n %d == 0)
 	{
