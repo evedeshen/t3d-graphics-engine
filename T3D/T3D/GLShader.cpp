@@ -60,7 +60,13 @@ namespace T3D{
 		glCompileShader(fragID);
 		glGetShaderiv(fragID, GL_COMPILE_STATUS, &result);
 		if (result!=GL_TRUE){
-			std::cout << "Fragment program "<< fragID << " did not compile...\n";
+			std::cout << "Fragment program " << fragID << " did not compile...\n";
+			GLchar* log;
+			GLint length;
+			glGetShaderiv(fragID, GL_INFO_LOG_LENGTH, &length);
+			log = (GLchar*)malloc(length);
+			glGetShaderInfoLog(fragID, length, &length, log);
+			std::cout << log << "\n";
 		} else {
 			//std::cout << "Fragment program "<< fragID << " compiled successfully\n";
 		}
@@ -76,6 +82,12 @@ namespace T3D{
 		glGetShaderiv(id, GL_LINK_STATUS, &result);
 		if (result!=GL_TRUE){
 			std::cout << "Error linking shader...\n";
+			GLchar* log;
+			GLint length;
+			glGetProgramiv(id, GL_INFO_LOG_LENGTH, &length);
+			log = (GLchar*)malloc(length);
+			glGetProgramInfoLog(id, length, &length, log);
+			std::cout << log << "\n";
 		} else {
 			//std::cout << "Shader program "<< id << " linked successfully\n";
 		}

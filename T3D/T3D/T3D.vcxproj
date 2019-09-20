@@ -70,6 +70,7 @@
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Tutorial1.cpp" />
     <ClCompile Include="tutorial4.cpp" />
+    <ClCompile Include="tutuorial5.cpp" />
     <ClCompile Include="WinGLApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +132,18 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Tutorial1.h" />
     <ClInclude Include="tutorial4.h" />
+    <ClInclude Include="tutuorial5.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vector4.h" />
     <ClInclude Include="WinGLApplication.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\frag.shader" />
+    <None Include="Resources\phongFrag.shader" />
+    <None Include="Resources\phongVert.shader" />
+    <None Include="Resources\vdiffuse.shader" />
+    <None Include="Resources\vert.shader" />
+    <None Include="Resources\vspecular.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A41C2D2A-C0C1-4EE8-9B5A-00EDD049DC2F}</ProjectGuid>

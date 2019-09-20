@@ -241,6 +241,9 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="ball.cpp">
+      <Filter>Source Files\Component\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="tutuorial5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -426,7 +429,30 @@
       <Filter>Header Files\Application</Filter>
     </ClInclude>
     <ClInclude Include="ball.h">
+      <Filter>Header Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="tutuorial5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\frag.shader">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\vdiffuse.shader">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\vert.shader">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\vspecular.shader">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\phongFrag.shader">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\phongVert.shader">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

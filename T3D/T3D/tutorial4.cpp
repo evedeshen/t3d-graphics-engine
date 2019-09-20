@@ -47,9 +47,9 @@ bool tutorial4::init() {
 	test.y = 1;
 	test.z = 0.5;
 	GameObject *cube = new GameObject(this);
-	cube->setMesh(new Chip(test, 0.2, 0.2, 0.3, 0.2, 16));
+	//cube->setMesh(new Chip(test, 0.2, 0.2, 0.3, 0.2, 16));
 	//cube->setMesh(new HoleInWall(test,0.1,0.1,0.2,20));
-	//cube->setMesh(new ball(1.0, 16));
+	cube->setMesh(new ball(1.0, 16));
 	cube->setMaterial(green);
 	cube->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	cube->getTransform()->setParent(root);
