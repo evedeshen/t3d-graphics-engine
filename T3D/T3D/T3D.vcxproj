@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationTest.cpp" />
     <ClCompile Include="AssignmentSweep.cpp" />
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="Billboard.cpp" />
@@ -75,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationTest.h" />
     <ClInclude Include="AssignmentSweep.h" />
     <ClInclude Include="ball.h" />
     <ClInclude Include="Billboard.h" />

@@ -244,7 +244,10 @@
       <Filter>Source Files\Component\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="tutuorial5.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTest.cpp">
+      <Filter>Source Files\Tasks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -425,14 +428,17 @@
     <ClInclude Include="Chip.h">
       <Filter>Header Files\Component\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="dog.h">
-      <Filter>Header Files\Application</Filter>
-    </ClInclude>
     <ClInclude Include="ball.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
     <ClInclude Include="tutuorial5.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dog.h">
+      <Filter>Header Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTest.h">
+      <Filter>Header Files\Tasks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

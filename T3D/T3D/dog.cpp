@@ -3,6 +3,8 @@
 #include "Cube.h"
 #include "KeyboardController.h"
 #include "cylinder.h"
+#include "AnimationTest.h"
+#include "Animation.h"
 
 using namespace T3D;
 dog::dog()
@@ -136,6 +138,28 @@ bool dog::init() {
 	headJoint->getTransform()->setLocalPosition(Vector3(0, 4, 0));
 	headJoint->getTransform()->setParent(body->getTransform());
 	headJoint->getTransform()->name = "headJoint";
+	/*
+	AnimationTest *animTask = new AnimationTest(this);
+	animTask->lamp = body->getTransform();
+	addTask(animTask);
+	*/
+
+	Animation *anim = new Animation(10.0);
+	body->addComponent(anim);
+	anim->addKey("legJoint1", 0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, 2, -0.7));
+	anim->addKey("legJoint1", 5.0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, 2, -0.7));
+	anim->addKey("legJoint1", 10.0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, 2, -0.7));
+	anim->addKey("legJoint2", 0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, 2, 0.7));
+	anim->addKey("legJoint2", 5.0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, 2, 0.7));
+	anim->addKey("legJoint2", 10.0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, 2, 0.7));
+	anim->addKey("legJoint3", 0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, -2, 0.7));
+	anim->addKey("legJoint3", 5.0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, -2, 0.7));
+	anim->addKey("legJoint3", 10.0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, -2, 0.7));
+	anim->addKey("legJoint4", 0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 5.0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 10.0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, -2, -0.7));
+	anim->loop(true);
+	anim->play();
 
 	return true;
 }

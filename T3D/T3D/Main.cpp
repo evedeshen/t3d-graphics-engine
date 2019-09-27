@@ -34,10 +34,10 @@ int main(int argc, char* argv[]){
 	//part 1 of assignment  
     //T3DApplication *theApp = new AssignmentSweep();
     //this is my part 2 of assignment
-	//T3DApplication *theApp = new dog(); 
+	T3DApplication *theApp = new dog(); 
 	//part 3 and 4, change the line 50 and 51 in tutorial 4, use line 50 is chip in wall and use line 51 is hole in wall 
 	//T3DApplication *theApp = new tutorial4();
-	T3DApplication *theApp = new tutuorial5();
+	//T3DApplication *theApp = new tutuorial5();
 	theApp->run();
 	delete theApp;
 
