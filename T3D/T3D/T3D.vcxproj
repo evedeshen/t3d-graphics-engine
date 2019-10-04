@@ -65,6 +65,8 @@
     <ClCompile Include="T3DApplication.cpp" />
     <ClCompile Include="T3DTest.cpp" />
     <ClCompile Include="Task.cpp" />
+    <ClCompile Include="Tcube.cpp" />
+    <ClCompile Include="Tcylinder.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TerrainFollower.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -128,6 +130,8 @@
     <ClInclude Include="T3DApplication.h" />
     <ClInclude Include="T3DTest.h" />
     <ClInclude Include="Task.h" />
+    <ClInclude Include="Tcube.h" />
+    <ClInclude Include="Tcylinder.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TerrainFollower.h" />
     <ClInclude Include="Texture.h" />
@@ -147,6 +151,10 @@
     <None Include="Resources\vert.shader" />
     <None Include="Resources\vspecular.shader" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\crate013jc.jpg" />
+    <Image Include="Resources\ExplosiveBarrel.jpg" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A41C2D2A-C0C1-4EE8-9B5A-00EDD049DC2F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -165,7 +173,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

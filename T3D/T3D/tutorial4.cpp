@@ -7,6 +7,8 @@
 #include "HoleInWall.h"
 #include "Chip.h"
 #include "ball.h"
+#include "Tcube.h"
+#include "Tcylinder.h"
 using namespace T3D;
 
 tutorial4::tutorial4()
@@ -41,15 +43,22 @@ bool tutorial4::init() {
 	camObj->addComponent(new KeyboardController());
 	Material *green = renderer->createMaterial(Renderer::PR_OPAQUE);
 	green->setDiffuse(0, 1, 0, 1);
+    Texture* cratetex = new Texture("Resources/ExplosiveBarrel.jpg", true, true);
+	renderer->loadTexture(cratetex);
+	Material* cratemat = renderer->createMaterial(Renderer::PR_OPAQUE);
+	cratemat->setTexture(cratetex);
 
 	Vector3 test;
 	test.x = 1;
 	test.y = 1;
 	test.z = 0.5;
-	GameObject *cube = new GameObject(this);
+	//GameObject *cube = new GameObject(this);
+	GameObject* cube = new GameObject(this);
 	//cube->setMesh(new Chip(test, 0.2, 0.2, 0.3, 0.2, 16));
 	//cube->setMesh(new HoleInWall(test,0.1,0.1,0.2,20));
-	cube->setMesh(new ball(1.0, 16));
+	//cube->setMesh(new ball(1.0, 16));
+	//cube->setMesh(new Tcube(1.0));
+	cube->setMesh(new cylinder(1,1,20));
 	cube->setMaterial(green);
 	cube->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	cube->getTransform()->setParent(root);

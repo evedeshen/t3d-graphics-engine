@@ -9,5 +9,6 @@ namespace T3D {
 	public:
 		cylinder(float radius,float height,int density);
 		virtual ~cylinder();
+		int become8(int t, int d);
 	};
 }
