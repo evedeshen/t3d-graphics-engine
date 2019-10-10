@@ -67,40 +67,42 @@ bool AssignmentSweep::init() {
 	points.push_back(Vector3(0.92, -0.38, 0));
 
 	
-    t.setLocalPosition(Vector3(-1, 0, 0));
+    t.setLocalPosition(Vector3(0, 0, 0));
 	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
-	t.setLocalScale(Vector3(0.5, 0.5, 0.5));
-	sp.addTransform(t);
-	t.setLocalPosition(Vector3(1, 0, 0));
-	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
-	t.setLocalScale(Vector3(1, 1, 1));
-	
-	sp.addTransform(t);
-	t.setLocalPosition(Vector3(3, 0, 0));
-	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
-	t.setLocalScale(Vector3(0.7,0.7,0.7));
+	t.setLocalScale(Vector3(0, 0, 0));
 	sp.addTransform(t);
 
-	t.setLocalPosition(Vector3(3, -3, 0));
-	t.setLocalRotation(Quaternion(Vector3(0  ,Math::PI / 2,0)));
-	t.setLocalScale(Vector3(0.7, 0.7, 0.7));
+	t.setLocalPosition(Vector3(0, -0.5, 0));
+	t.setLocalRotation(Quaternion(Vector3(Math::PI / 2, 0, 0)));
+	t.setLocalScale(Vector3(0.63, 0.63, 0.63));
+	sp.addTransform(t);
+	t.setLocalPosition(Vector3(0, -1, 0));
+	t.setLocalRotation(Quaternion(Vector3(Math::PI / 2, 0, 0)));
+	t.setLocalScale(Vector3(0.9, 0.9, 0.9));
+	
 	sp.addTransform(t);
 
 	t.setLocalPosition(Vector3(0, -3, 0));
-	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
+	t.setLocalScale(Vector3(0.9, 0.9, 0.9));
+	sp.addTransform(t);
+
+	t.setLocalPosition(Vector3(-1, -4, 0));
+	t.setLocalScale(Vector3(1, 1, 1));
+	sp.addTransform(t);
+
+	t.setLocalPosition(Vector3(-1.5, -4.5, 0));
 	t.setLocalScale(Vector3(1, 1, 1));
 	sp.addTransform(t);
 
 
-	t.setLocalPosition(Vector3(-3, -3, 0));
-	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
-	t.setLocalScale(Vector3(0.7, 0.7, 0.7));
+	t.setLocalPosition(Vector3(-1.5,-4.5, 0));
+	t.setLocalScale(Vector3(0, 0, 0));
 	sp.addTransform(t);
 
-	t.setLocalPosition(Vector3(-3, 0, 0));
-	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
-	t.setLocalScale(Vector3(1, 1, 1));
-	sp.addTransform(t);
+	//t.setLocalPosition(Vector3(-3, 0, 0));
+	//t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
+	//t.setLocalScale(Vector3(1, 1, 1));
+	//sp.addTransform(t);
 	
 	
 	

@@ -237,9 +237,6 @@
     <ClCompile Include="Chip.cpp">
       <Filter>Source Files\Component\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="dog.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="ball.cpp">
       <Filter>Source Files\Component\Mesh</Filter>
     </ClCompile>
@@ -249,11 +246,14 @@
     <ClCompile Include="AnimationTest.cpp">
       <Filter>Source Files\Tasks</Filter>
     </ClCompile>
-    <ClCompile Include="Tcube.cpp">
+    <ClCompile Include="dog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tcube.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
     <ClCompile Include="Tcylinder.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -437,19 +437,19 @@
     <ClInclude Include="ball.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
-    <ClInclude Include="tutuorial5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dog.h">
-      <Filter>Header Files\Component</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationTest.h">
       <Filter>Header Files\Tasks</Filter>
     </ClInclude>
     <ClInclude Include="Tcube.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Tasks</Filter>
     </ClInclude>
     <ClInclude Include="Tcylinder.h">
+      <Filter>Header Files\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="tutuorial5.h">
+      <Filter>Header Files\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="dog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -478,6 +478,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\crate013jc.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\fur-texture-seamless-free-thumb25.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

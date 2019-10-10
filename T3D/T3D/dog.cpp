@@ -5,6 +5,7 @@
 #include "cylinder.h"
 #include "AnimationTest.h"
 #include "Animation.h"
+#include "Tcylinder.h"
 
 using namespace T3D;
 dog::dog()
@@ -14,6 +15,63 @@ dog::dog()
 
 dog::~dog()
 {
+}
+
+void T3D::dog::legSweep()
+{
+
+
+
+
+	// Make a profile
+	
+	points.push_back(Vector3(1, 0, 0.));
+	points.push_back(Vector3(0.92, 0.38, 0));
+	points.push_back(Vector3(0.7, 0.7, 0));
+	points.push_back(Vector3(0.38, 0.92, 0));
+	points.push_back(Vector3(0, 1, 0));
+	points.push_back(Vector3(-0.38, 0.92, 0));
+	points.push_back(Vector3(-0.7, 0.7, 0));
+	points.push_back(Vector3(-0.92, 0.38, 0));
+	points.push_back(Vector3(-1, 0, 0));
+	points.push_back(Vector3(-0.92, -0.38, 0));
+	points.push_back(Vector3(-0.7, -0.7, 0));
+	points.push_back(Vector3(-0.38, -0.92, 0));
+	points.push_back(Vector3(0, -1, 0));
+	points.push_back(Vector3(0.38, -0.92, 0));
+	points.push_back(Vector3(0.7, -0.7, 0));
+	points.push_back(Vector3(0.92, -0.38, 0));
+
+
+	t.setLocalPosition(Vector3(0, 0, 0));
+	t.setLocalRotation(Quaternion(Vector3(0, Math::PI / 2, 0)));
+	t.setLocalScale(Vector3(0, 0, 0));
+	sp.addTransform(t);
+
+	t.setLocalPosition(Vector3(0, -0.5, 0));
+	t.setLocalRotation(Quaternion(Vector3(Math::PI / 2, 0, 0)));
+	t.setLocalScale(Vector3(0.63, 0.63, 0.63));
+	sp.addTransform(t);
+	t.setLocalPosition(Vector3(0, -1, 0));
+	t.setLocalRotation(Quaternion(Vector3(Math::PI / 2, 0, 0)));
+	t.setLocalScale(Vector3(0.9, 0.9, 0.9));
+
+	sp.addTransform(t);
+
+	t.setLocalPosition(Vector3(0, -5, 0));
+	t.setLocalScale(Vector3(0.9, 0.9, 0.9));
+	sp.addTransform(t);
+
+
+	t.setLocalPosition(Vector3(-1.5, -7, 0));
+	t.setLocalScale(Vector3(1, 1, 1));
+	sp.addTransform(t);
+
+
+	t.setLocalPosition(Vector3(-1.5, -7, 0));
+	t.setLocalScale(Vector3(0, 0, 0));
+	sp.addTransform(t);
+	
 }
 
 bool dog::init() {
@@ -43,66 +101,77 @@ bool dog::init() {
 	camObj->getTransform()->setLocalRotation(Vector3(0, 0, 0));
 	camObj->setCamera(renderer->camera);
 	camObj->getTransform()->setParent(root);
+	camObj->getTransform()->name = "camera";
 	camObj->addComponent(new KeyboardController());
 	Material *green = renderer->createMaterial(Renderer::PR_OPAQUE);
 	green->setDiffuse(0, 1, 0, 1);
 	Material *grey = renderer->createMaterial(Renderer::PR_OPAQUE);
 	grey->setDiffuse(0.8, 0.8, 0.9, 1);
 
+	Texture *cratetex = new Texture("Resources/fur-texture-seamless-free-thumb25.jpg", true, true);
+	renderer->loadTexture(cratetex);
+	Material *cratemat = renderer->createMaterial(Renderer::PR_OPAQUE);
+	cratemat->setTexture(cratetex);
+
 	GameObject *body = new GameObject(this);
-	body->setMesh(new cylinder(1, 4, 20));
-	body->setMaterial(grey);
+	body->setMesh(new Tcylinder(1, 4, 20));
+	body->setMaterial(cratemat);
 	body->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	body->getTransform()->setLocalRotation(Quaternion(Vector3(0, 0, Math::PI / 2)));
 	body->getTransform()->setParent(root);
 	body->getTransform()->name = "body";
 
+	legSweep();//initial the sweeeeeep
 	//let's works on legs 
 	GameObject *leg1 = new GameObject(this);
-	leg1->setMesh(new cylinder(0.3, 1.3, 20));
+	leg1->setMesh(new Sweep(points, sp, true));
 	leg1->setMaterial(green);
-	leg1->getTransform()->setLocalPosition(Vector3(-1.3,0,0));
+	leg1->getTransform()->setLocalPosition(Vector3(0,0,0));
 	leg1->getTransform()->setLocalRotation(Quaternion(Vector3(0, 0, -Math::PI / 2)));
+	leg1->getTransform()->setLocalScale(Vector3(0.4, 0.4, 0.4));
 	leg1->getTransform()->setParent(legJoint1->getTransform());
 	leg1->getTransform()->name = "leg1";
 
 	GameObject *leg2 = new GameObject(this);
-	leg2->setMesh(new cylinder(0.3, 1.3, 20));
+	leg2->setMesh(new Sweep(points, sp, true));
 	leg2->setMaterial(green);
-	leg2->getTransform()->setLocalPosition(Vector3(-1.3, 0, 0));
+	leg2->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	leg2->getTransform()->setLocalRotation(Quaternion(Vector3(0, 0, -Math::PI / 2)));
+	leg2->getTransform()->setLocalScale(Vector3(0.4, 0.4, 0.4));
 	leg2->getTransform()->setParent(legJoint2->getTransform());
 	leg2->getTransform()->name = "leg2";
 
 	GameObject *leg3 = new GameObject(this);
-	leg3->setMesh(new cylinder(0.3, 1.3, 20));
+	leg3->setMesh(new Sweep(points, sp, true));
 	leg3->setMaterial(green);
-	leg3->getTransform()->setLocalPosition(Vector3(-1.3,0,0));
+	leg3->getTransform()->setLocalPosition(Vector3(0,0,0));
 	leg3->getTransform()->setLocalRotation(Quaternion(Vector3(0, 0, -Math::PI / 2)));
+	leg3->getTransform()->setLocalScale(Vector3(0.4, 0.4, 0.4));
 	leg3->getTransform()->setParent(legJoint3->getTransform());
 	leg3->getTransform()->name = "leg3";
 
 	GameObject *leg4 = new GameObject(this);
-	leg4->setMesh(new cylinder(0.3, 1.3, 20));
+	leg4->setMesh(new Sweep(points, sp, true));
 	leg4->setMaterial(green);
-	leg4->getTransform()->setLocalPosition(Vector3(-1.3, 0, 0));
+	leg4->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	leg4->getTransform()->setLocalRotation(Quaternion(Vector3(0, 0, -Math::PI / 2)));
+	leg4->getTransform()->setLocalScale(Vector3(0.4, 0.4, 0.4));
 	leg4->getTransform()->setParent(legJoint4->getTransform());
 	leg4->getTransform()->name = "leg4";
 
-	legJoint1->getTransform()->setLocalPosition(Vector3(0.1, 2, -0.7));
+	legJoint1->getTransform()->setLocalPosition(Vector3(0.1, 2, 0));
 	legJoint1->getTransform()->setParent(body->getTransform());
 	legJoint1->getTransform()->name = "legJoint1";
 
-	legJoint2->getTransform()->setLocalPosition(Vector3(0.1, 2, 0.7));
+	legJoint2->getTransform()->setLocalPosition(Vector3(0.1, 2, 0));
 	legJoint2->getTransform()->setParent(body->getTransform());
 	legJoint2->getTransform()->name = "legJoint2";
 
-	legJoint3->getTransform()->setLocalPosition(Vector3(0.1, -2, 0.7));
+	legJoint3->getTransform()->setLocalPosition(Vector3(0.1, -2, 0));
 	legJoint3->getTransform()->setParent(body->getTransform());
 	legJoint3->getTransform()->name = "legJoint3";
 
-	legJoint4->getTransform()->setLocalPosition(Vector3(0.1, -2, -0.7));
+	legJoint4->getTransform()->setLocalPosition(Vector3(0.1, -2, 0));
 	legJoint4->getTransform()->setParent(body->getTransform());
 	legJoint4->getTransform()->name = "legJoint4";
 
@@ -144,21 +213,38 @@ bool dog::init() {
 	addTask(animTask);
 	*/
 
-	Animation *anim = new Animation(10.0);
+	Animation *anim = new Animation(25.0);
 	body->addComponent(anim);
-	anim->addKey("legJoint1", 0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, 2, -0.7));
-	anim->addKey("legJoint1", 5.0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, 2, -0.7));
-	anim->addKey("legJoint1", 10.0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, 2, -0.7));
-	anim->addKey("legJoint2", 0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, 2, 0.7));
-	anim->addKey("legJoint2", 5.0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, 2, 0.7));
-	anim->addKey("legJoint2", 10.0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, 2, 0.7));
-	anim->addKey("legJoint3", 0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, -2, 0.7));
-	anim->addKey("legJoint3", 5.0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, -2, 0.7));
-	anim->addKey("legJoint3", 10.0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, -2, 0.7));
-	anim->addKey("legJoint4", 0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, -2, -0.7));
-	anim->addKey("legJoint4", 5.0, Quaternion(Vector3(0, 0, -Math::PI / 4)), Vector3(0.1, -2, -0.7));
-	anim->addKey("legJoint4", 10.0, Quaternion(Vector3(0, 0, Math::PI / 4)), Vector3(0.1, -2, -0.7));
-	anim->loop(true);
+	anim->addKey("legJoint1", 0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, -0.7));
+	anim->addKey("legJoint1", 5.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, 2, -0.7));
+	anim->addKey("legJoint1", 10.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, -0.7));
+	anim->addKey("legJoint1", 12.5, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, 2, -0.7));
+	anim->addKey("legJoint1", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, 2, -0.7));
+
+	anim->addKey("legJoint2", 0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, 0.7));
+	anim->addKey("legJoint2", 5.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, 2, 0.7));
+	anim->addKey("legJoint2", 10.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, 0.7));
+	anim->addKey("legJoint2", 12.5, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, 2, 0.7));
+	anim->addKey("legJoint2", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, 2, 0.7));
+
+	anim->addKey("legJoint3", 0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, -2, 0.7));
+	anim->addKey("legJoint3", 5.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, -2, 0.7));
+	anim->addKey("legJoint3", 10.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, -2, 0.7));
+	anim->addKey("legJoint3", 12.5, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, -2, 0.7));
+	anim->addKey("legJoint3", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, -2, 0.7));
+
+	anim->addKey("legJoint4", 0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 5.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 10.0, Quaternion(Vector3(0, 0, Math::PI /5)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 12.5, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 15.0, Quaternion(Vector3(0, -3*Math::PI / 4, 0)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 20.0, Quaternion(Vector3(0, -3 * Math::PI / 4, 0)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, -2, -0.7));
+
+	anim->addKey("body", 0.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(0, 0, 0));
+	anim->addKey("body", 12.5, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-10, 0, 0));
+	anim->addKey("body", 25.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-10, 0, 0));
+	anim->loop(false);
 	anim->play();
 
 	return true;

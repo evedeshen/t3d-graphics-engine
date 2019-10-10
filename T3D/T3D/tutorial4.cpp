@@ -43,7 +43,7 @@ bool tutorial4::init() {
 	camObj->addComponent(new KeyboardController());
 	Material *green = renderer->createMaterial(Renderer::PR_OPAQUE);
 	green->setDiffuse(0, 1, 0, 1);
-    Texture* cratetex = new Texture("Resources/ExplosiveBarrel.jpg", true, true);
+    Texture* cratetex = new Texture("Resources/fur-texture-seamless-free-thumb25.jpg", true, true);
 	renderer->loadTexture(cratetex);
 	Material* cratemat = renderer->createMaterial(Renderer::PR_OPAQUE);
 	cratemat->setTexture(cratetex);
@@ -58,8 +58,8 @@ bool tutorial4::init() {
 	//cube->setMesh(new HoleInWall(test,0.1,0.1,0.2,20));
 	//cube->setMesh(new ball(1.0, 16));
 	//cube->setMesh(new Tcube(1.0));
-	cube->setMesh(new cylinder(1,1,20));
-	cube->setMaterial(green);
+	cube->setMesh(new Tcylinder(1,1,20));
+	cube->setMaterial(cratemat);
 	cube->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	cube->getTransform()->setParent(root);
 	cube->getTransform()->name = "Cube";
