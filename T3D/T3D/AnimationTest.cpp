@@ -11,9 +11,27 @@ using namespace T3D;
 	}
 
 	void AnimationTest::update(float dt) {
+		if (start == false)
+		{
+        anima->play();
+        start = true;
+		}
+		
 		elapsedTime += dt;
 		
-		lamp->setLocalPosition(Vector3(smoothedLerp(0, 1, elapsedTime / 5.0, 0.2), 0, 0));
+		if (elapsedTime > 15.0) {
+			if (elapsedTime<22.5)
+			{
+              Aobject->setVisible(true);
+			}
+			else
+			{
+			  Aobject->setVisible(false);
+			}
+		}
+
+
+
 		/*if (elapsedTime<5)
 		{
             lamp->setLocalPosition(Vector3::lerp(Vector3(0, 0, 0), Vector3(1, 0, 0), elapsedTime / 5));

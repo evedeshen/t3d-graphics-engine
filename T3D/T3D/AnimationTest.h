@@ -1,6 +1,7 @@
 #pragma once
 #include "Task.h"
 #include "T3DApplication.h"
+#include "Animation.h"
 namespace T3D {
 
 
@@ -11,12 +12,17 @@ namespace T3D {
 		
 		AnimationTest(T3DApplication *app) : Task(app) {
 			elapsedTime = 0;
-			lamp = NULL;
+			Aobject = NULL;
+			anima = NULL;
+			start = false;
 		}
 		virtual ~AnimationTest();
 		void update(float dt);
 		static float smoothedLerp(float startPos, float endPos, float time, float accelerationTime);
 		Transform *lamp;
+		GameObject *Aobject;
+		bool start;
+		Animation* anima;
 		float elapsedTime;
 	};
 }

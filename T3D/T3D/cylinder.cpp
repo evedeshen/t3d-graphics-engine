@@ -32,7 +32,7 @@ namespace T3D {
 		}
 		setVertex(4*density, 0, -h, 0);
 		setVertex(4*density+1, 0, h, 0);
-
+		
 
 		for (int i = 0; i < density; i++)
 		{

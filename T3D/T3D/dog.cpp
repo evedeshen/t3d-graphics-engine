@@ -69,9 +69,16 @@ void T3D::dog::legSweep()
 
 
 	t.setLocalPosition(Vector3(-1.5, -7, 0));
-	t.setLocalScale(Vector3(0, 0, 0));
+	t.setLocalScale(Vector3(1.5, 1.5, 1.5));
 	sp.addTransform(t);
 	
+	t.setLocalPosition(Vector3(-2, -8, 0));
+	t.setLocalScale(Vector3(1.5, 1.5, 1.5));
+	sp.addTransform(t);
+
+	t.setLocalPosition(Vector3(-2, -8, 0));
+	t.setLocalScale(Vector3(0, 0, 0));
+	sp.addTransform(t);
 }
 
 bool dog::init() {
@@ -207,13 +214,18 @@ bool dog::init() {
 	headJoint->getTransform()->setLocalPosition(Vector3(0, 4, 0));
 	headJoint->getTransform()->setParent(body->getTransform());
 	headJoint->getTransform()->name = "headJoint";
-	/*
-	AnimationTest *animTask = new AnimationTest(this);
-	animTask->lamp = body->getTransform();
-	addTask(animTask);
-	*/
 
-	Animation *anim = new Animation(25.0);
+	GameObject* pee = new GameObject(this);
+	pee->setMesh(new cylinder(0.2, 1, 20));
+	pee->getTransform()->setLocalPosition(Vector3(-8,-1.8, -1));
+	pee->getTransform()->setLocalRotation(Quaternion(Vector3(-Math::PI / 2, 3 * Math::PI / 4, -Math::PI / 2)));
+	pee->getTransform()->setParent(root);
+	pee->getTransform()->name = "pee";
+	pee->setVisible(false);
+	pee->setMaterial(grey);
+	
+	
+    Animation *anim = new Animation(25.0);
 	body->addComponent(anim);
 	anim->addKey("legJoint1", 0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, -0.7));
 	anim->addKey("legJoint1", 5.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, 2, -0.7));
@@ -238,14 +250,23 @@ bool dog::init() {
 	anim->addKey("legJoint4", 10.0, Quaternion(Vector3(0, 0, Math::PI /5)), Vector3(0.1, -2, -0.7));
 	anim->addKey("legJoint4", 12.5, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, -2, -0.7));
 	anim->addKey("legJoint4", 15.0, Quaternion(Vector3(0, -3*Math::PI / 4, 0)), Vector3(0.1, -2, -0.7));
-	anim->addKey("legJoint4", 20.0, Quaternion(Vector3(0, -3 * Math::PI / 4, 0)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 22.5, Quaternion(Vector3(0, -3 * Math::PI / 4, 0)), Vector3(0.1, -2, -0.7));
 	anim->addKey("legJoint4", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, -2, -0.7));
 
 	anim->addKey("body", 0.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(0, 0, 0));
 	anim->addKey("body", 12.5, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-10, 0, 0));
 	anim->addKey("body", 25.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-10, 0, 0));
 	anim->loop(false);
-	anim->play();
+
+	
+	AnimationTest *animTask = new AnimationTest(this);
+	animTask->Aobject = pee;
+	animTask->anima = anim;
+
+	addTask(animTask);
+	
+
+	
 
 	return true;
 }

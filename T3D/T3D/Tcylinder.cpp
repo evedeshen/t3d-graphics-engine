@@ -29,8 +29,10 @@ Tcylinder::Tcylinder(float r, float h, int density)
 
 	}
 	setVertex(4 * density+4, 0, -h, 0);
+	setUV(4 * density + 4, 0.5, 0.5);
 	setVertex(4 * density + 5, 0, h, 0);
 
+	setUV(4 * density + 5, 0.25, 0.25);
 
 	for (int i = 0; i < density; i++)
 	{
