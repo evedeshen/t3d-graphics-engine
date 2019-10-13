@@ -6,7 +6,8 @@
 #include "AnimationTest.h"
 #include "Animation.h"
 #include "Tcylinder.h"
-
+#include "animateTexture.h"
+#include <thread>
 using namespace T3D;
 dog::dog()
 {
@@ -120,9 +121,25 @@ bool dog::init() {
 	Material *cratemat = renderer->createMaterial(Renderer::PR_OPAQUE);
 	cratemat->setTexture(cratetex);
 
+	Texture* cratetex2 = new Texture("Resources/moose-coat_1426-350.jpg", true, true);
+	renderer->loadTexture(cratetex);
+	Material* cratemat2 = renderer->createMaterial(Renderer::PR_OPAQUE);
+	cratemat->setTexture(cratetex);
+
+	Material* animatedMaterial[2];
+	animatedMaterial[0] = cratemat;
+	animatedMaterial[1] = green;
+
+	//string filename[2];
+	//filename[0] = "Resources/fur-texture-seamless-free-thumb25.jpg";
+	//filename[1] = "Resources/moose-coat_1426-350.jpg";
+	int cTime[2] = { 0,10 };
+	
+
 	GameObject *body = new GameObject(this);
 	body->setMesh(new Tcylinder(1, 4, 20));
 	body->setMaterial(cratemat);
+	//body->setAnimatedTexture(animatedMaterial, cTime, false);
 	body->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	body->getTransform()->setLocalRotation(Quaternion(Vector3(0, 0, Math::PI / 2)));
 	body->getTransform()->setParent(root);
@@ -225,25 +242,34 @@ bool dog::init() {
 	pee->setMaterial(grey);
 	
 	
-    Animation *anim = new Animation(25.0);
+    Animation *anim = new Animation(30.0);
 	body->addComponent(anim);
 	anim->addKey("legJoint1", 0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, -0.7));
 	anim->addKey("legJoint1", 5.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, 2, -0.7));
 	anim->addKey("legJoint1", 10.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, -0.7));
 	anim->addKey("legJoint1", 12.5, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, 2, -0.7));
 	anim->addKey("legJoint1", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, 2, -0.7));
+	anim->addKey("legJoint1", 26.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, -0.7));
+	anim->addKey("legJoint1", 28.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, 2, -0.7));
+	anim->addKey("legJoint1", 30.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, -0.7));
 
 	anim->addKey("legJoint2", 0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, 0.7));
 	anim->addKey("legJoint2", 5.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, 2, 0.7));
 	anim->addKey("legJoint2", 10.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, 0.7));
 	anim->addKey("legJoint2", 12.5, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, 2, 0.7));
 	anim->addKey("legJoint2", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, 2, 0.7));
+	anim->addKey("legJoint2", 26.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, 0.7));
+	anim->addKey("legJoint2", 28.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, 2, 0.7));
+	anim->addKey("legJoint2", 30.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, 2, 0.7));
 
 	anim->addKey("legJoint3", 0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, -2, 0.7));
 	anim->addKey("legJoint3", 5.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, -2, 0.7));
 	anim->addKey("legJoint3", 10.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, -2, 0.7));
 	anim->addKey("legJoint3", 12.5, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, -2, 0.7));
 	anim->addKey("legJoint3", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, -2, 0.7));
+	anim->addKey("legJoint3", 26.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, -2, 0.7));
+	anim->addKey("legJoint3", 28.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, -2, 0.7));
+	anim->addKey("legJoint3", 30.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, -2, 0.7));
 
 	anim->addKey("legJoint4", 0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, -2, -0.7));
 	anim->addKey("legJoint4", 5.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, -2, -0.7));
@@ -252,17 +278,30 @@ bool dog::init() {
 	anim->addKey("legJoint4", 15.0, Quaternion(Vector3(0, -3*Math::PI / 4, 0)), Vector3(0.1, -2, -0.7));
 	anim->addKey("legJoint4", 22.5, Quaternion(Vector3(0, -3 * Math::PI / 4, 0)), Vector3(0.1, -2, -0.7));
 	anim->addKey("legJoint4", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 26.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 28.0, Quaternion(Vector3(0, 0, -Math::PI / 5)), Vector3(0.1, -2, -0.7));
+	anim->addKey("legJoint4", 30.0, Quaternion(Vector3(0, 0, Math::PI / 5)), Vector3(0.1, -2, -0.7));
 
 	anim->addKey("body", 0.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(0, 0, 0));
 	anim->addKey("body", 12.5, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-10, 0, 0));
 	anim->addKey("body", 25.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-10, 0, 0));
+	anim->addKey("body", 30.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-20, 0, 0));
+
 	anim->loop(false);
 
 	
 	AnimationTest *animTask = new AnimationTest(this);
 	animTask->Aobject = pee;
 	animTask->anima = anim;
+	animTask->m = green;
+	animTask->Bobject = body;
+	//animateTexture* animTexture = new animateTexture(this);
+	//animTexture->Aobject = body;
+	//animTexture->m = animatedMaterial;
+	//animTexture->time = cTime;
 
+	//addTask(animTexture);
+	
 	addTask(animTask);
 	
 

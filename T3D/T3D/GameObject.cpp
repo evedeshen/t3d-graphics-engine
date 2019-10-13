@@ -15,6 +15,9 @@
 #include "Camera.h"
 #include "Light.h"
 #include "Terrain.h"
+#include <thread>
+
+
 
 namespace T3D
 {
@@ -114,6 +117,11 @@ namespace T3D
 	void GameObject::setMaterial(Material *m){
 		material = m;
 	}
+
+	void GameObject::setStaticMaterial(Material* m, GameObject* t)
+	{
+		t->material = m;
+	}
 	
 	/*! Returns the Material
 	  Will return NULL if no material is attached
@@ -122,7 +130,34 @@ namespace T3D
 	Material* GameObject::getMaterial(){
 		return material;
 	}
+
 	
+	void GameObject::setAnimatedTexture(Material* m[], int* time, bool loop)
+	{
+		
+		std::thread thread_object(temp, m, time, loop, this);
+		
+	}
+
+	void GameObject::temp(Material* cratemate[], int* time, bool loop, GameObject *t)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			if (i == 0)
+			{
+				t->setStaticMaterial(cratemate[i], t);
+
+			}
+			else
+			{
+				_sleep(time[i] - time[i - 1]);
+				t->setStaticMaterial(cratemate[i], t);
+
+			}
+		}
+	}
+	
+
 	/*! Attaches a Mesh to this game object
 	  Sets the mesh variable for this object and also the gameObject link for the Mesh
 	  \param m		The Mesh

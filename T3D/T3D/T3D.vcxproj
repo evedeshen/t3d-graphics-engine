@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="animateTexture.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationTest.cpp" />
     <ClCompile Include="AssignmentSweep.cpp" />
@@ -77,6 +78,7 @@
     <ClCompile Include="WinGLApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animateTexture.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationTest.h" />
     <ClInclude Include="AssignmentSweep.h" />
@@ -155,6 +157,7 @@
     <Image Include="Resources\crate013jc.jpg" />
     <Image Include="Resources\ExplosiveBarrel.jpg" />
     <Image Include="Resources\fur-texture-seamless-free-thumb25.jpg" />
+    <Image Include="Resources\moose-coat_1426-350.jpg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A41C2D2A-C0C1-4EE8-9B5A-00EDD049DC2F}</ProjectGuid>

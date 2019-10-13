@@ -14,6 +14,7 @@
 #include <vector>
 #include "Mesh.h"
 #include "Material.h"
+#include "Renderer.h"
 
 namespace T3D
 {
@@ -45,7 +46,10 @@ namespace T3D
 		Light* getLight();
 
 		void setMaterial(Material *m);
+		static void setStaticMaterial(Material* m, GameObject* t);
 		Material* getMaterial();
+		void setAnimatedTexture(Material* m[], int *time, bool loop);
+		static void temp(Material* m[], int* time, bool loop, GameObject* t);
 		
 		void setMesh(Mesh *m);
 		Mesh* getMesh();
@@ -63,13 +67,15 @@ namespace T3D
 
 		void setAlpha(float alpha) { this->alpha = alpha; }		// 
 		float getAlpha() { return alpha; }
+        Material* material;
 
 	protected:
 		T3DApplication *app;
 		Transform* transform;
 		Camera* camera;
 		Light* light;
-		Material* material;
+		
+		//Renderer* renderer;
 		Mesh* mesh;
 		float alpha;			// override material alpha if < 1.0
 

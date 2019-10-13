@@ -13,14 +13,17 @@ namespace T3D {
 		AnimationTest(T3DApplication *app) : Task(app) {
 			elapsedTime = 0;
 			Aobject = NULL;
+			Bobject = NULL;
 			anima = NULL;
 			start = false;
+			m = NULL;
 		}
 		virtual ~AnimationTest();
 		void update(float dt);
 		static float smoothedLerp(float startPos, float endPos, float time, float accelerationTime);
-		Transform *lamp;
+		Material* m;
 		GameObject *Aobject;
+		GameObject* Bobject;
 		bool start;
 		Animation* anima;
 		float elapsedTime;

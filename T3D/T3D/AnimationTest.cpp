@@ -23,12 +23,15 @@ using namespace T3D;
 			if (elapsedTime<22.5)
 			{
               Aobject->setVisible(true);
+			  Bobject->setMaterial(m);
 			}
 			else
 			{
 			  Aobject->setVisible(false);
 			}
 		}
+
+
 
 
 

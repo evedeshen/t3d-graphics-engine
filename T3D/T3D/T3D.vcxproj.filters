@@ -255,6 +255,9 @@
     <ClCompile Include="Tcylinder.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="animateTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -452,6 +455,9 @@
     <ClInclude Include="dog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="animateTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\frag.shader">
@@ -481,6 +487,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\fur-texture-seamless-free-thumb25.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\moose-coat_1426-350.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
