@@ -16,6 +16,7 @@
 #include "Light.h"
 #include "Terrain.h"
 #include <thread>
+#include "animateTexture.h"
 
 
 
@@ -135,13 +136,39 @@ namespace T3D
 	void GameObject::setAnimatedTexture(Material* m[], int* time, bool loop)
 	{
 		
-		std::thread thread_object(temp, m, time, loop, this);
+		//animateTexture* animTexture = new animateTexture(g);
+		//animTexture->Aobject = this;
+		//animTexture->m = m;
+		//animTexture->time = time;
+		//g->addTask(animTexture);
 		
+
+		//std::thread thread_object(temp, m, time, loop, this);
+		//thread_object.join();
+		
+		
+		/*std::thread thread_object([](Material* m[], int* time, GameObject *t) {
+			for (int i = 0; i < 2; i++)
+			{
+				if (i == 0)
+				{
+					t->setStaticMaterial(m[i], t);
+
+				}
+				else
+				{
+					_sleep(time[i] - time[i - 1]);
+					t->setStaticMaterial(m[i], t);
+
+				}
+			}
+		}, m, time, this);
+		*/
 	}
 
 	void GameObject::temp(Material* cratemate[], int* time, bool loop, GameObject *t)
 	{
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < sizeof(time); i++)
 		{
 			if (i == 0)
 			{
@@ -150,7 +177,9 @@ namespace T3D
 			}
 			else
 			{
-				_sleep(time[i] - time[i - 1]);
+				printf("sleeep \n");
+				_sleep(100*(time[i] - time[i - 1]));
+				printf("sleeeped \n");
 				t->setStaticMaterial(cratemate[i], t);
 
 			}

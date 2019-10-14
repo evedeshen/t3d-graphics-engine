@@ -126,14 +126,18 @@ bool dog::init() {
 	Material* cratemat2 = renderer->createMaterial(Renderer::PR_OPAQUE);
 	cratemat->setTexture(cratetex);
 
-	Material* animatedMaterial[2];
+	Material** animatedMaterial;// [4];
+	animatedMaterial = new Material*[4];
 	animatedMaterial[0] = cratemat;
 	animatedMaterial[1] = green;
+	animatedMaterial[2] = grey;
+	animatedMaterial[3] = cratemat2;
+
 
 	//string filename[2];
 	//filename[0] = "Resources/fur-texture-seamless-free-thumb25.jpg";
 	//filename[1] = "Resources/moose-coat_1426-350.jpg";
-	int cTime[2] = { 0,10 };
+	int cTime[4] = { 0,10,20,30 };
 	
 
 	GameObject *body = new GameObject(this);
@@ -293,15 +297,16 @@ bool dog::init() {
 	AnimationTest *animTask = new AnimationTest(this);
 	animTask->Aobject = pee;
 	animTask->anima = anim;
-	animTask->m = green;
+	animTask->m = cratemat;
 	animTask->Bobject = body;
-	//animateTexture* animTexture = new animateTexture(this);
-	//animTexture->Aobject = body;
-	//animTexture->m = animatedMaterial;
-	//animTexture->time = cTime;
 
-	//addTask(animTexture);
+	animateTexture* animTexture = new animateTexture(this);
+	animTexture->Aobject = body;
+	animTexture->m = animatedMaterial;
+	animTexture->time = cTime;
+
 	
+	//addTask(animTexture);
 	addTask(animTask);
 	
 

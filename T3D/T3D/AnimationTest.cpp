@@ -15,21 +15,34 @@ using namespace T3D;
 		{
         anima->play();
         start = true;
+		tempUV= Bobject->getMesh()->getUVs();
 		}
 		
+		 //get the UVs
 		elapsedTime += dt;
 		
 		if (elapsedTime > 15.0) {
 			if (elapsedTime<22.5)
 			{
               Aobject->setVisible(true);
-			  Bobject->setMaterial(m);
+			  //Bobject->setMaterial(m);
+			 
 			}
 			else
 			{
 			  Aobject->setVisible(false);
 			}
 		}
+
+		if (elapsedTime<30)
+		{
+			for (int i = 0; i < Bobject->getMesh()->getNumVerts(); i++)
+			{
+				Bobject->getMesh()->setUV(i, (0.002*elapsedTime / 30)+tempUV[2 * i],  tempUV[2 * i + 1]);
+			}
+		}
+		
+
 
 
 

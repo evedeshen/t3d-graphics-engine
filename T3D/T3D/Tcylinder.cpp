@@ -17,10 +17,10 @@ Tcylinder::Tcylinder(float r, float h, int density)
 
 		// top vertex
 		setVertex(i, x, h, z);
-		setUV(i, float(i) / density, 0);
+		setUV(i, 0.8*float(i) / density, 0);
 		// bottom vertex
 		setVertex(density + i+1, x, -h, z);
-		setUV(density + 1 + i, float(i) / density, 0.6);
+		setUV(density + 1 + i, 0.8*float(i) / density, 0.6);
 
 		setVertex(2 * density +i+2, x, h, z);
 		setUV(2 * density + i + 2, 0.25 + 0.25*cos(theta), 0.25 + 0.25*sin(theta));

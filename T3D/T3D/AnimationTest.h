@@ -17,6 +17,7 @@ namespace T3D {
 			anima = NULL;
 			start = false;
 			m = NULL;
+			tempUV = NULL;
 		}
 		virtual ~AnimationTest();
 		void update(float dt);
@@ -27,5 +28,6 @@ namespace T3D {
 		bool start;
 		Animation* anima;
 		float elapsedTime;
+		float* tempUV;
 	};
 }
