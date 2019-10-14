@@ -18,10 +18,12 @@ namespace T3D {
 			start = false;
 			m = NULL;
 			tempUV = NULL;
+			
 		}
 		virtual ~AnimationTest();
 		void update(float dt);
 		static float smoothedLerp(float startPos, float endPos, float time, float accelerationTime);
+		float backToOne(float a);// if a is greater than 1 let it minus one 
 		Material* m;
 		GameObject *Aobject;
 		GameObject* Bobject;
@@ -29,5 +31,6 @@ namespace T3D {
 		Animation* anima;
 		float elapsedTime;
 		float* tempUV;
+		const float* UV;
 	};
 }

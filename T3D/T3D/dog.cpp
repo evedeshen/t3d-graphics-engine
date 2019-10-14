@@ -143,6 +143,7 @@ bool dog::init() {
 	GameObject *body = new GameObject(this);
 	body->setMesh(new Tcylinder(1, 4, 20));
 	body->setMaterial(cratemat);
+	body->setAnimateTexture(0.002, 0.2);
 	//body->setAnimatedTexture(animatedMaterial, cTime, false);
 	body->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	body->getTransform()->setLocalRotation(Quaternion(Vector3(0, 0, Math::PI / 2)));

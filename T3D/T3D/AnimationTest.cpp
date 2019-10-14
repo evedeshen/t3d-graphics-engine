@@ -15,8 +15,10 @@ using namespace T3D;
 		{
         anima->play();
         start = true;
-		tempUV= Bobject->getMesh()->getUVs();
+		tempUV = Bobject->getMesh()->getUVs();
+		
 		}
+
 		
 		 //get the UVs
 		elapsedTime += dt;
@@ -34,14 +36,17 @@ using namespace T3D;
 			}
 		}
 
+		/*
 		if (elapsedTime<30)
 		{
 			for (int i = 0; i < Bobject->getMesh()->getNumVerts(); i++)
 			{
-				Bobject->getMesh()->setUV(i, (0.002*elapsedTime / 30)+tempUV[2 * i],  tempUV[2 * i + 1]);
+				//tempUV[2 * i] = backToOne(tempUV[2 * i] + 0.002*elapsedTime);
+				Bobject->getMesh()->setUV(i, backToOne((0.002 )+tempUV[2 * i]),  tempUV[2 * i + 1]);
 			}
 		}
 		
+		*/
 
 
 
@@ -87,5 +92,14 @@ using namespace T3D;
 		}
 
 		return endPos;
+	}
+
+	float T3D::AnimationTest::backToOne(float a)
+	{
+		if (a>=1.0)
+		{
+			return a - 1.0;
+		}
+		return a;
 	}
 

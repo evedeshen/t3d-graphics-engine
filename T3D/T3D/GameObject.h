@@ -49,8 +49,8 @@ namespace T3D
 		void setMaterial(Material *m);
 		static void setStaticMaterial(Material* m, GameObject* t);
 		Material* getMaterial();
-		void setAnimatedTexture(Material* m[], int *time, bool loop);
-		static void temp(Material* m[], int* time, bool loop, GameObject* t);
+		//void setAnimatedTexture(Material* m[], int *time, bool loop);
+		//static void temp(Material* m[], int* time, bool loop, GameObject* t);
 		
 		void setMesh(Mesh *m);
 		Mesh* getMesh();
@@ -59,6 +59,7 @@ namespace T3D
 
 		void addComponent(Component *component);
 		void update(float dt);
+		void setAnimateTexture(float speed,float s);
 
 		void setDistanceToCamera(float distance) { distanceToCamera = distance; }
 		float getDistanceToCamera() const { return distanceToCamera; }
@@ -68,18 +69,21 @@ namespace T3D
 
 		void setAlpha(float alpha) { this->alpha = alpha; }		// 
 		float getAlpha() { return alpha; }
-        Material* material;
+       
+		float backToOne(float a);// if a is greater than 1, let it smaller than one 
 
 	protected:
 		T3DApplication *app;
 		Transform* transform;
 		Camera* camera;
 		Light* light;
-		
+		bool loop;
+		float speed;
+		float sizeOfAnimte;
 		//Renderer* renderer;
 		Mesh* mesh;
 		float alpha;			// override material alpha if < 1.0
-
+        Material* material;
 	private:		
 		std::vector<Component*> components;
 

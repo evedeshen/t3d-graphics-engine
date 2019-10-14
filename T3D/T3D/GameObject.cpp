@@ -35,6 +35,9 @@ namespace T3D
 		light = NULL;
 		visible = true;
 		alpha = 1.0f;
+		loop = false;
+		speed = 0.0;
+		sizeOfAnimte = 0.0;
 	}
 
 	/*! Destructor
@@ -132,7 +135,7 @@ namespace T3D
 		return material;
 	}
 
-	
+	/*
 	void GameObject::setAnimatedTexture(Material* m[], int* time, bool loop)
 	{
 		
@@ -147,7 +150,7 @@ namespace T3D
 		//thread_object.join();
 		
 		
-		/*std::thread thread_object([](Material* m[], int* time, GameObject *t) {
+		std::thread thread_object([](Material* m[], int* time, GameObject *t) {
 			for (int i = 0; i < 2; i++)
 			{
 				if (i == 0)
@@ -163,7 +166,7 @@ namespace T3D
 				}
 			}
 		}, m, time, this);
-		*/
+		
 	}
 
 	void GameObject::temp(Material* cratemate[], int* time, bool loop, GameObject *t)
@@ -185,7 +188,7 @@ namespace T3D
 			}
 		}
 	}
-	
+	*/
 
 	/*! Attaches a Mesh to this game object
 	  Sets the mesh variable for this object and also the gameObject link for the Mesh
@@ -224,5 +227,30 @@ namespace T3D
 		{
 			(*it)->update(dt);
 		}
+
+		//new update for texture
+		if (loop)
+		{
+			float* tempUV = getMesh()->getUVs();
+			for (int i = 0; i < getMesh()->getNumVerts(); i++)
+			{
+				getMesh()->setUV(i, backToOne(tempUV[2 * i]+speed), tempUV[2 * i + 1]);
+			}
+		}
+		
+	}
+	void GameObject::setAnimateTexture(float speeds, float s)
+	{
+		loop = true;
+		speed = speeds;
+		sizeOfAnimte = s;
+	}
+	float GameObject::backToOne(float a)
+	{
+		if (a >= 1.00)
+		{
+			return a - 1;
+		}
+		return a;
 	}
 }
