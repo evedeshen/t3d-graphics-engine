@@ -15,19 +15,26 @@ using namespace T3D;
 		{
         anima->play();
         start = true;
-		tempUV = Bobject->getMesh()->getUVs();
 		
 		}
 
 		
 		 //get the UVs
 		elapsedTime += dt;
-		
+		//if (elapsedTime >5)
+		//{
+
+		// Bobject->getTransform()->setLocalPosition(Vector3::lerp(Vector3(0, 0, 20), Vector3(-10, 0, 20), elapsedTime / 20));
+		//}
+
+
 		if (elapsedTime > 15.0) {
 			if (elapsedTime<22.5)
 			{
               Aobject->setVisible(true);
 			  //Bobject->setMaterial(m);
+			  //Vector3 temp = Bobject->getTransform()->getLocalPosition();
+			 
 			 
 			}
 			else

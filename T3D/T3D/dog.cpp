@@ -91,6 +91,7 @@ bool dog::init() {
 	GameObject *legJoint4 = new GameObject(this);
 	GameObject *headJoint = new GameObject(this);
 	GameObject *tailJoint = new GameObject(this);
+	GameObject *body = new GameObject(this);
 	// more code to come...
 	GameObject *lightObj = new GameObject(this);
 	Light *light = new Light(Light::DIRECTIONAL);
@@ -108,9 +109,11 @@ bool dog::init() {
 	camObj->getTransform()->setLocalPosition(Vector3(0, 0, 20));
 	camObj->getTransform()->setLocalRotation(Vector3(0, 0, 0));
 	camObj->setCamera(renderer->camera);
-	camObj->getTransform()->setParent(root);
+	camObj->getTransform()->setParent(body->getTransform());
 	camObj->getTransform()->name = "camera";
-	camObj->addComponent(new KeyboardController());
+
+	//camObj->addComponent(new KeyboardController());
+
 	Material *green = renderer->createMaterial(Renderer::PR_OPAQUE);
 	green->setDiffuse(0, 1, 0, 1);
 	Material *grey = renderer->createMaterial(Renderer::PR_OPAQUE);
@@ -140,10 +143,10 @@ bool dog::init() {
 	int cTime[4] = { 0,10,20,30 };
 	
 
-	GameObject *body = new GameObject(this);
+	
 	body->setMesh(new Tcylinder(1, 4, 20));
 	body->setMaterial(cratemat);
-	body->setAnimateTexture(0.002, 0.2);
+	body->setAnimateTexture(0.0008, 0.2);
 	//body->setAnimatedTexture(animatedMaterial, cTime, false);
 	body->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	body->getTransform()->setLocalRotation(Quaternion(Vector3(0, 0, Math::PI / 2)));
@@ -292,6 +295,11 @@ bool dog::init() {
 	anim->addKey("body", 25.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-10, 0, 0));
 	anim->addKey("body", 30.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-20, 0, 0));
 
+	anim->addKey("camera", 0.0, Quaternion(Vector3(0, 0, 0)), Vector3(0, 0, 20));
+	anim->addKey("camera", 12.5, Quaternion(Vector3(0, 0, 0)), Vector3(10, 0, 20));
+	anim->addKey("camera", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0, 0, 20));
+	anim->addKey("camera", 30.0, Quaternion(Vector3(0, 0, 0)), Vector3(10, 0, 20));
+
 	anim->loop(false);
 
 	
@@ -299,12 +307,9 @@ bool dog::init() {
 	animTask->Aobject = pee;
 	animTask->anima = anim;
 	animTask->m = cratemat;
-	animTask->Bobject = body;
+	animTask->Bobject = camObj;
 
-	animateTexture* animTexture = new animateTexture(this);
-	animTexture->Aobject = body;
-	animTexture->m = animatedMaterial;
-	animTexture->time = cTime;
+
 
 	
 	//addTask(animTexture);

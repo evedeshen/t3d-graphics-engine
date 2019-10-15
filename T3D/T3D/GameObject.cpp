@@ -234,7 +234,7 @@ namespace T3D
 			float* tempUV = getMesh()->getUVs();
 			for (int i = 0; i < getMesh()->getNumVerts(); i++)
 			{
-				getMesh()->setUV(i, backToOne(tempUV[2 * i]+speed), tempUV[2 * i + 1]);
+				getMesh()->setUV(i, backToOne(tempUV[2 * i],speed), tempUV[2 * i + 1]);
 			}
 		}
 		
@@ -245,12 +245,18 @@ namespace T3D
 		speed = speeds;
 		sizeOfAnimte = s;
 	}
-	float GameObject::backToOne(float a)
+
+
+
+	float GameObject::backToOne(float a,float b)
 	{
-		if (a >= 1.00)
+		
+
+		if (a+b >=1 )
 		{
-			return a - 1;
+			return a+b - 1;
 		}
-		return a;
+
+		return a+b;
 	}
 }

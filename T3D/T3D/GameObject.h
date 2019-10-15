@@ -70,7 +70,7 @@ namespace T3D
 		void setAlpha(float alpha) { this->alpha = alpha; }		// 
 		float getAlpha() { return alpha; }
        
-		float backToOne(float a);// if a is greater than 1, let it smaller than one 
+		float backToOne(float a,float b);// if a is greater than 1, let it smaller than one 
 
 	protected:
 		T3DApplication *app;

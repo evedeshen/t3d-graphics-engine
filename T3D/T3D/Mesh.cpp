@@ -161,6 +161,7 @@ namespace T3D
 	void Mesh::setUV(int i, float u, float v){
 		uvs[i*2] = u;
 		uvs[i*2+1] = v;
+		
 	}
 
 	void Mesh::calcNormals(){
