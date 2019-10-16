@@ -59,7 +59,7 @@ namespace T3D
 
 		void addComponent(Component *component);
 		void update(float dt);
-		void setAnimateTexture(float speed,float s);
+		void setAnimateTexture(float speed);
 
 		void setDistanceToCamera(float distance) { distanceToCamera = distance; }
 		float getDistanceToCamera() const { return distanceToCamera; }
@@ -78,8 +78,8 @@ namespace T3D
 		Camera* camera;
 		Light* light;
 		bool loop;
-		float speed;
-		float sizeOfAnimte;
+		float SpeedOfTexture;
+	
 		//Renderer* renderer;
 		Mesh* mesh;
 		float alpha;			// override material alpha if < 1.0

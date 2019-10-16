@@ -8,6 +8,7 @@
 #include "Tcylinder.h"
 #include "animateTexture.h"
 #include <thread>
+#include "GLShader.h"
 using namespace T3D;
 dog::dog()
 {
@@ -107,7 +108,7 @@ bool dog::init() {
 	renderer->camera =
 		new Camera(Camera::PERSPECTIVE, 0.1, 500.0, 45.0, 1.6);
 	camObj->getTransform()->setLocalPosition(Vector3(0, 0, 20));
-	camObj->getTransform()->setLocalRotation(Vector3(0, 0, 0));
+	camObj->getTransform()->setLocalRotation(Quaternion(Vector3(0, 0, -Math::PI / 2)));
 	camObj->setCamera(renderer->camera);
 	camObj->getTransform()->setParent(body->getTransform());
 	camObj->getTransform()->name = "camera";
@@ -120,21 +121,12 @@ bool dog::init() {
 	grey->setDiffuse(0.8, 0.8, 0.9, 1);
 
 	Texture *cratetex = new Texture("Resources/fur-texture-seamless-free-thumb25.jpg", true, true);
-	renderer->loadTexture(cratetex);
+	renderer->loadTexture(cratetex,true);
 	Material *cratemat = renderer->createMaterial(Renderer::PR_OPAQUE);
 	cratemat->setTexture(cratetex);
 
-	Texture* cratetex2 = new Texture("Resources/moose-coat_1426-350.jpg", true, true);
-	renderer->loadTexture(cratetex);
-	Material* cratemat2 = renderer->createMaterial(Renderer::PR_OPAQUE);
-	cratemat->setTexture(cratetex);
+	
 
-	Material** animatedMaterial;// [4];
-	animatedMaterial = new Material*[4];
-	animatedMaterial[0] = cratemat;
-	animatedMaterial[1] = green;
-	animatedMaterial[2] = grey;
-	animatedMaterial[3] = cratemat2;
 
 
 	//string filename[2];
@@ -142,11 +134,13 @@ bool dog::init() {
 	//filename[1] = "Resources/moose-coat_1426-350.jpg";
 	int cTime[4] = { 0,10,20,30 };
 	
+	GLShader *gouraudShader = new GLShader("Resources/vspecular.shader", "Resources/frag.shader");
+	gouraudShader->compileShader();
+	green->setShader(gouraudShader);
 
-	
 	body->setMesh(new Tcylinder(1, 4, 20));
 	body->setMaterial(cratemat);
-	body->setAnimateTexture(0.0008, 0.2);
+	body->setAnimateTexture(0.0008);
 	//body->setAnimatedTexture(animatedMaterial, cTime, false);
 	body->getTransform()->setLocalPosition(Vector3(0, 0, 0));
 	body->getTransform()->setLocalRotation(Quaternion(Vector3(0, 0, Math::PI / 2)));
@@ -295,10 +289,10 @@ bool dog::init() {
 	anim->addKey("body", 25.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-10, 0, 0));
 	anim->addKey("body", 30.0, Quaternion(Vector3(0, 0, Math::PI / 2)), Vector3(-20, 0, 0));
 
-	anim->addKey("camera", 0.0, Quaternion(Vector3(0, 0, 0)), Vector3(0, 0, 20));
-	anim->addKey("camera", 12.5, Quaternion(Vector3(0, 0, 0)), Vector3(10, 0, 20));
-	anim->addKey("camera", 25.0, Quaternion(Vector3(0, 0, 0)), Vector3(0, 0, 20));
-	anim->addKey("camera", 30.0, Quaternion(Vector3(0, 0, 0)), Vector3(10, 0, 20));
+	anim->addKey("camera", 0.0, Quaternion(Vector3(0, 0, -Math::PI / 2)), Vector3(0, 0, 20));
+	anim->addKey("camera", 12.5, Quaternion(Vector3(0, 0, -Math::PI / 2)), Vector3(0, -10, 20));
+	anim->addKey("camera", 25.0, Quaternion(Vector3(0, 0, -Math::PI / 2)), Vector3(0, 0, 20));
+	anim->addKey("camera", 30.0, Quaternion(Vector3(0, 0, -Math::PI / 2)), Vector3(0, -10, 20));
 
 	anim->loop(false);
 

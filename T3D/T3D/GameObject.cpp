@@ -36,8 +36,8 @@ namespace T3D
 		visible = true;
 		alpha = 1.0f;
 		loop = false;
-		speed = 0.0;
-		sizeOfAnimte = 0.0;
+		SpeedOfTexture = 0.0;
+	
 	}
 
 	/*! Destructor
@@ -234,16 +234,16 @@ namespace T3D
 			float* tempUV = getMesh()->getUVs();
 			for (int i = 0; i < getMesh()->getNumVerts(); i++)
 			{
-				getMesh()->setUV(i, backToOne(tempUV[2 * i],speed), tempUV[2 * i + 1]);
+				getMesh()->setUV(i, (tempUV[2 * i]+SpeedOfTexture), tempUV[2 * i + 1]);
 			}
 		}
 		
 	}
-	void GameObject::setAnimateTexture(float speeds, float s)
+	void GameObject::setAnimateTexture(float speeds)
 	{
 		loop = true;
-		speed = speeds;
-		sizeOfAnimte = s;
+		SpeedOfTexture = speeds;
+	
 	}
 
 
