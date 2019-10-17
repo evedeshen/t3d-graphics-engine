@@ -180,10 +180,15 @@ namespace T3D
 			glDisable(GL_FOG);
 		}
 
-		if (showWireframe){
+		if (showWireframe%3 == 1){
 			glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 			glDisable(GL_CULL_FACE);
-		} else {
+		}
+		else if (showWireframe % 3 == 2) {
+			glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+			glDisable(GL_CULL_FACE);
+		}
+		else {
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);	
 			glEnable(GL_CULL_FACE);
 		}

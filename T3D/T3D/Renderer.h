@@ -59,7 +59,7 @@ namespace T3D
 		
 		void setFog(float d, float r, float g, float b, float a);
 		void toggleFog(){ showFog = !showFog; }
-		void toggleWireframe(){ showWireframe = !showWireframe; }
+		void toggleWireframe(){ showWireframe ++; }
 		void togglePoints(){ showPoints = !showPoints; }
 		void toggleGrid(){ showGrid = !showGrid; }
 		void toggleAxes(){ showAxes = !showAxes; }
@@ -83,8 +83,8 @@ namespace T3D
 		bool showFog;
 		float fogDensity;
 		float fogColour[4];
-
-		bool showWireframe, showPoints, showGrid, showAxes;
+		int showWireframe;
+		bool  showPoints, showGrid, showAxes;
 
 	private:
 		std::vector<Material*> materials[PRIORITY_LEVELS];

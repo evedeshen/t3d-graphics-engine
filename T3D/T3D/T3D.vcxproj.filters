@@ -256,10 +256,10 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="animateTexture.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Tasks</Filter>
     </ClCompile>
     <ClCompile Include="pyramid.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -458,11 +458,11 @@
     <ClInclude Include="dog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="animateTexture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="pyramid.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="animateTexture.h">
+      <Filter>Header Files\Tasks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

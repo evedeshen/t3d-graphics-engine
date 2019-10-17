@@ -1,11 +1,12 @@
 in vec4 color;
 in vec4 P;
 in vec3 N;
+in vec4 V;
 
 vec4 phongIllumination(vec4 P, vec3 N) {
 	// Ambient calculation
 	vec4 ambient = gl_FrontMaterial.ambient * gl_LightModel.ambient;
-
+	
 	// Emission calculation
 	vec4 emission = gl_FrontMaterial.emission;
 	vec3 L = normalize(gl_LightSource[0].position.xyz - vec3(P * gl_LightSource[0].position.w));
@@ -68,12 +69,16 @@ void main()
 	//color = phongIllumination(P, N);
 
 	//gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
-	if (P.y >1.0) {
+	float totalSize = V.x + V.y + V.z;
+
+	vec4 detect = P * (V / (totalSize * totalSize));
+
+	if (V.z  >0.5) {
 		color = vec4(1, 1, 1, 1);
 	}
-	else if (P.y > 0.5) {
+	else if (V.z  > 0) {
 		float temp = 0.0;
-		temp = 1 - (1 - P.y) * 2;
+		temp = 1 - (0.5 - V.z) * 2;
 		color = vec4(temp, temp, temp, temp) + orenNayarIllum(P, N);
 	}
 	gl_FragColor = color;
