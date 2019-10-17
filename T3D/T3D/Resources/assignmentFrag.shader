@@ -64,9 +64,18 @@ void main()
 
     
 
-	//color = orenNayarIllum(P, N);
-	color = phongIllumination(P, N);
-	
+	color = orenNayarIllum(P, N);
+	//color = phongIllumination(P, N);
+
+	//gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+	if (P.y >1.0) {
+		color = vec4(1, 1, 1, 1);
+	}
+	else if (P.y > 0.5) {
+		float temp = 0.0;
+		temp = 1 - (1 - P.y) * 2;
+		color = vec4(temp, temp, temp, temp) + orenNayarIllum(P, N);
+	}
 	gl_FragColor = color;
 }
 

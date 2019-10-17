@@ -134,7 +134,7 @@ bool dog::init() {
 	//filename[1] = "Resources/moose-coat_1426-350.jpg";
 	int cTime[4] = { 0,10,20,30 };
 	
-	GLShader *gouraudShader = new GLShader("Resources/vspecular.shader", "Resources/frag.shader");
+	GLShader *gouraudShader = new GLShader("Resources/vspecular.shader", "Resources/phongFrag.shader");
 	gouraudShader->compileShader();
 	green->setShader(gouraudShader);
 

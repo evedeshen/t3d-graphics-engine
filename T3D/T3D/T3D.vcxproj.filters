@@ -258,6 +258,9 @@
     <ClCompile Include="animateTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pyramid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -458,6 +461,9 @@
     <ClInclude Include="animateTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="pyramid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\frag.shader">
@@ -476,6 +482,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Resources\phongVert.shader">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\assignmentFrag.shader">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\assignmentVert.shader">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

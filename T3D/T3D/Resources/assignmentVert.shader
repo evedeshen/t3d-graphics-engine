@@ -11,6 +11,11 @@ void main()
 	P = gl_ModelViewMatrix * gl_Vertex;
 	N = normalize(gl_NormalMatrix * gl_Normal);
 	
+	if (gl_Position.z > 0.0) {
+		color = (1, 1, 1, 1);
+	}
+
+
 	
 
 	//color = phongIllumination(P, N);

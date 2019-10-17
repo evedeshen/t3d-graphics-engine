@@ -52,6 +52,7 @@
     <ClCompile Include="PerfLogTask.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="PlaneMesh.cpp" />
+    <ClCompile Include="pyramid.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RotateBehaviour.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="PerfLogTask.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="PlaneMesh.h" />
+    <ClInclude Include="pyramid.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RotateBehaviour.h" />
@@ -146,6 +148,8 @@
     <ClInclude Include="WinGLApplication.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\assignmentFrag.shader" />
+    <None Include="Resources\assignmentVert.shader" />
     <None Include="Resources\frag.shader" />
     <None Include="Resources\phongFrag.shader" />
     <None Include="Resources\phongVert.shader" />

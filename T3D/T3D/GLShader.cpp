@@ -43,7 +43,7 @@ namespace T3D{
 
 		glShaderSource(vertID,1,&vert,&vertLength);
 		glShaderSource(fragID,1,&frag,&fragLength);
-
+		
 		glCompileShader(vertID);
 		glGetShaderiv(vertID, GL_COMPILE_STATUS, &result);
 		if (result!=GL_TRUE){
